@@ -1,0 +1,79 @@
+--- COMPANY INFORMATION ---
+
+TechMarkt is an online electronics retailer based in Germany, specializing in consumer electronics and household appliances.
+
+--- PRODUCT INFORMATION ---
+
+TechMarkt offers a wide range of consumer electronics and household appliances at competitive prices, including:
+
+Smartphones:  
+- Samsung Galaxy S21: 128GB storage, 5G connectivity, €799, includes 2-year warranty  
+- Apple iPhone 14: 256GB storage, 5G connectivity, €999, includes 2-year warranty  
+
+Laptops:  
+- Lenovo ThinkPad X1 Carbon: Intel i7 processor, 16GB RAM, 512GB SSD, €1,499  
+- Apple MacBook Air M2: 8-core CPU, 8GB RAM, 256GB SSD, €1,249  
+
+TVs:  
+- Samsung QLED 55": 4K UHD, Smart TV features, €899  
+- LG OLED 65": 4K UHD, Smart TV features, €1,499  
+
+Household Electronics:  
+- Dyson V11 Cordless Vacuum Cleaner: Up to 60 minutes runtime, €599  
+- Philips Airfryer XXL: Digital controls, 1.4kg capacity, €199  
+- De’Longhi Magnifica S Coffee Machine: Automatic espresso, €499
+- iRobot Roomba i3+: Robot vacuum with self-emptying, €699
+- Philips Series 3000 Air Purifier: For rooms up to 60m², €349
+
+Monitors
+- Samsung 27" Curved Gaming Monitor: 144Hz refresh rate, 1ms response, €399
+- Dell 24" UltraSharp Monitor: Full HD, IPS, ergonomic stand, €249
+
+--- COMMON FAQs AND RESPONSES ---
+
+Q: What are your business hours?  
+A: Our business hours are: Monday to Friday from 9AM to 8PM CET, Saturday 10AM to 6PM CET, and Sunday 12PM to 5PM CET.
+
+Q: What is your return policy?  
+A: You can return most items within 30 days of purchase. Items must be unused, in their original condition, and include all packaging. 
+
+Q: What is the warranty on your products?
+A: All Electronics come with a 2-year manufacturer warranty.
+
+Q: How much does shipping cost?  
+A: Shipping is free for orders over €50. For smaller orders under €50, standard shipping costs €7.99, and expedited shipping costs €14.99.
+
+Q: How long does shipping take?  
+A: Standard shipping typically takes 3-5 business days within Germany. Expedited shipping options can deliver within 1-2 business days.
+
+Q: Do you ship internationally?  
+A: Currently, we only ship within Germany.
+
+Q: How can I track my order?  
+A: Once your order ships, we send a tracking number to your email. You can also log into your TechMarkt account on our website to see real-time updates on your order status.
+
+Q: What payment methods do you accept?  
+A: We accept all major credit cards (Visa, MasterCard, American Express), PayPal, Apple Pay, and Google Pay for secure and easy checkout.
+
+Q: Do you offer financing or installment payment options?  
+A: Currently, we do not offer financing or installment plans, but you can pay securely using the accepted payment methods.
+
+Q: Can I cancel or modify my order after placing it?  
+A: You can modify or cancel your order within 1 hour of placing it through your online account. After that window, please contact customer service promptly, and we will do our best to assist.
+
+Q: How do I request a warranty repair or replacement?  
+A: For warranty service, please contact our customer support with your order details and a description of the issue. We will guide you through the repair or replacement process. Warranty repairs typically take 7-14 business days.
+
+Q: Do you offer vouchers or promotional discounts?  
+A: Yes, we offer vouchers available on our website. You can also apply valid discount codes during checkout.
+
+Q: Can you help me set up my new device?  
+A: While we don’t provide direct technical support, we offer setup guides and FAQs on our website. For complex issues, we recommend contacting the device manufacturer’s support.
+
+Q: How do you protect my personal data?  
+A: We take data privacy seriously and comply with GDPR regulations. Your personal information is securely stored and used only to fulfill your orders and improve our services. For more details, please see our Privacy Policy on the website.
+
+Q: Do you have a physical store?  
+A: We are an online-only retailer, but our friendly support team is available via phone, email, and live chat during business hours to assist you.
+
+

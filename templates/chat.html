@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Chatbot</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('/static/techmarkt_translated_resized.png');
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-color: #ffffff;
+            min-height: 100vh;
+        }
+
+        .chat-container {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 350px;
+        height: 450px;
+        background-color:#cccccc;
+        border-radius: 10px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        padding: 15px;
+        z-index: 1000;
+        }
+        
+        h1 {
+            color: #2069fb;;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        
+        #chat-messages {
+            flex: 1;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            width: 100%;
+            overflow-y: auto;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-sizing: border-box;
+        }
+        
+        #chat-messages p {
+            margin: 0;
+            padding: 10px;
+            border-radius: 8px;
+            line-height: 1.4;
+        }
+        
+        .input-container {
+            display: flex;
+            gap: 10px;
+        }
+        
+        #message-input {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 25px;
+            font-size: 16px;
+            outline: none;
+        }
+        
+        #message-input:focus {
+            border-color: #007bff;
+        }
+        
+        button {
+            padding: 12px 24px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        
+        button:hover {
+            background-color: #0056b3;
+        }
+        
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+    </style>
+        
+    
+</head>
+<body>
+    <div class="chat-container">
+        <h1>Chat with Rob</h1>
+        <div id="chat-messages">
+            <p><strong>Rob:</strong> Hi! I am Rob, your AI assistant. How can I help you?</p>
+        </div>
+        <div class="input-container">
+            <input type="text" id="message-input" placeholder="Type here...">
+            <button onclick="sendMessage()">send</button>
+        </div>
+    </div>
+    
+    <script>
+    function sendMessage() {
+        // Get the message from the input box
+        const input = document.getElementById('message-input');
+        const message = input.value;
+        
+        addMessageToChat('User', message);
+        
+        // Don't send empty messages
+        if (message.trim() === '') {
+            return;
+        }
+        
+        console.log('Sending message:', message);
+        
+        // Clear the input box
+        input.value = '';
+        
+        // Send http request to Flask
+        fetch('/chat', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({message: message})
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('AI Response:', data.response);
+            addMessageToChat('Rob', data.response);
+        })
+        .catch(error => {
+            console.log('Error:', error);
+        });
+    }
+    function addMessageToChat(sender, message) {
+        const chatMessages = document.getElementById('chat-messages');
+        const messageElement = document.createElement('p');
+
+        // Replace line breaks with HTML line breaks
+        const formattedMessage = message.replace(/\n/g, '<br>');
+        messageElement.innerHTML = `<strong>${sender}:</strong> ${formattedMessage}`;
+
+        chatMessages.appendChild(messageElement);
+        chatMessages.scrollTop = chatMessages.scrollHeight; // Scroll to the bottom
+    }
+    </script>
+</body>
+</html>
