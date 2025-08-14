@@ -16,6 +16,7 @@ Session(app)
 
 # Enable session management
 load_dotenv()
+print(f"DEBUG: Dotenv loaded, API key: {os.getenv('OPENAI_API_KEY')[:10] if os.getenv('OPENAI_API_KEY') else 'NOT FOUND'}...")
 app.secret_key = os.getenv("FLASK_SECRET_KEY")
 
 # Function definitions
@@ -29,6 +30,8 @@ def prompt_system():
 
 def create_openai_connector():
     api_key = os.getenv("OPENAI_API_KEY")
+    print(f"DEBUG: API key from env: {api_key[:10] if api_key else 'NONE'}...")
+    print(f"DEBUG: All env vars: {list(os.environ.keys())}")
     client = OpenAI(api_key=api_key)
     return client
 
@@ -122,4 +125,5 @@ def chat():
         return jsonify({"response": ai_response})
 
 if __name__ == "__main__":
-    app.run(debug=True, port=5001)
+    port = int(os.environ.get("PORT", 5001))
+    app.run(host="0.0.0.0", port=port, debug=False)
