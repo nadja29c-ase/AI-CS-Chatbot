@@ -9,8 +9,9 @@ from redis import Redis
 app = Flask(__name__)
 
 # Enable server-side sessions storage
-SESSION_TYPE = 'redis'
-SESSION_REDIS = Redis(host='localhost', port=6379)
+SESSION_TYPE = "redis"
+redis_url = os.getenv("REDIS_URL", "redis://localhost:6379")
+SESSION_REDIS = Redis.from_url(redis_url)
 app.config.from_object(__name__)
 Session(app)
 
