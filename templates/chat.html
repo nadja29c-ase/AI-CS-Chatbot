@@ -104,6 +104,7 @@
         <div id="chat-messages">
             <p><strong>Rob:</strong> Hi! Ich bin Rob, dein KI-Assistent. Wie kann ich dir helfen?</p>
         </div>
+        <div id="chat-status" style="display: none; padding: 5px; font-size: 14px;"></div>
         <div class="input-container">
             <input type="text" id="message-input" placeholder="Hier eingeben...">
             <button onclick="sendMessage()">Senden</button>
@@ -112,50 +113,139 @@
     
     <script>
     function sendMessage() {
-        // Get the message from the input box
         const input = document.getElementById('message-input');
-        const message = input.value;
-
-        addMessageToChat('Kunde', message);
-
-        // Don't send empty messages
-        if (message.trim() === '') {
+        if (!input) {
+            console.error('Message input field not found');
             return;
         }
-        
-        console.log('Sending message:', message);
-        
+        const message = input.value.trim();
+    
+        // Don't send empty messages - check BEFORE adding to chat
+        if (message === '') {
+        return;
+        }
+    
+        // Add user message to chat only after validation
+        addMessageToChat('Kunde', message);
+    
         // Clear the input box
         input.value = '';
-        
-        // Send http request to Flask
+    
+        // Disable input during request to prevent double-sending
+        input.disabled = true;
+    
+        // Show typing indicator
+        showTypingIndicator();
+    
+        // Send HTTP request to Flask
         fetch('/chat', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
+            headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({message: message})
         })
-        .then(response => response.json())
+        .then(response => {
+            // Always parse JSON to get backend error messages
+            return response.json().then(data => {
+                if (!response.ok) {
+                    console.error('Backend error:', response.status, data.error || data.message);
+                    // Use error message from your Flask backend
+                    throw new Error(data.error || data.message || 'Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.');
+                }
+                return data;
+            });
+        })
         .then(data => {
-            console.log('AI Response:', data.response);
+            hideTypingIndicator();
+            console.log('Message sent successfully, response received');
             addMessageToChat('Rob', data.response);
         })
         .catch(error => {
-            console.log('Error:', error);
+            hideTypingIndicator();
+            console.error('Chat error:', error);
+        
+            // Handle different error types
+            if (error instanceof TypeError && error.message.includes('Failed to fetch')) {
+                // Network failure - can't reach server
+                addErrorToChat('Verbindung zum Server nicht möglich. Bitte prüfen Sie Ihre Internetverbindung.');
+            } else {
+                // All other errors - use message from Flask backend or fallback
+                addErrorToChat(error.message);
+            }
+        })
+        .finally(() => {
+            // Always re-enable input, regardless of success or failure
+            input.disabled = false;
+            input.focus();
         });
     }
+
     function addMessageToChat(sender, message) {
         const chatMessages = document.getElementById('chat-messages');
+        if (!chatMessages) {
+            console.error('Chat messages container not found');
+            return;
+        }
         const messageElement = document.createElement('p');
-
-        // Replace line breaks with HTML line breaks
-        const formattedMessage = message.replace(/\n/g, '<br>');
-        messageElement.innerHTML = `<strong>${sender}:</strong> ${formattedMessage}`;
-
+    
+        // Replace line breaks with HTML line breaks and escape HTML for security
+        const formattedMessage = escapeHtml(message).replace(/\n/g, '<br>');
+        messageElement.innerHTML = `<strong>${escapeHtml(sender)}:</strong> ${formattedMessage}`;
+    
         chatMessages.appendChild(messageElement);
-        chatMessages.scrollTop = chatMessages.scrollHeight; // Scroll to the bottom
+        chatMessages.scrollTop = chatMessages.scrollHeight;
     }
-    </script>
+
+    function addErrorToChat(errorMessage) {
+        const chatMessages = document.getElementById('chat-messages');
+        if (!chatMessages) {  
+            console.error('Chat messages container not found');
+            return;
+        }
+        const messageElement = document.createElement('p');
+    
+        // Style error messages to stand out and escape for security
+        messageElement.style.color = '#d32f2f';
+        messageElement.style.fontStyle = 'italic';
+        messageElement.innerHTML = `<strong>⚠️ Fehler:</strong> ${escapeHtml(errorMessage)}`;
+    
+        chatMessages.appendChild(messageElement);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    function escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+    }
+
+    function showTypingIndicator() {
+        const statusArea = document.getElementById('chat-status');
+        if (statusArea) {
+            statusArea.innerHTML = '<span style="font-style: italic; color: #666;">Rob tippt...</span>';
+            statusArea.style.display = 'block';
+        }
+    }
+
+    function hideTypingIndicator() {
+        const statusArea = document.getElementById('chat-status');
+        if (statusArea) {
+            statusArea.innerHTML = '';
+            statusArea.style.display = 'none';
+        }
+    }
+
+    // Add Enter key support
+    document.addEventListener('DOMContentLoaded', function() {
+        const input = document.getElementById('message-input');
+        if (input) {
+            input.addEventListener('keypress', function(event) {
+                if (event.key === 'Enter') {
+                    event.preventDefault();
+                    sendMessage();
+                }
+            });
+        }
+    });
+</script>
 </body>
 </html>
