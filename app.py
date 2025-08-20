@@ -6,6 +6,8 @@ import os
 import sys
 import logging
 from redis import Redis
+import basic_metrics
+import time
 
 # Configure logging
 logging.basicConfig(
@@ -28,6 +30,7 @@ redis_url = os.getenv("REDIS_URL", "redis://localhost:6379")
 SESSION_REDIS = Redis.from_url(redis_url)
 app.config.from_object(__name__)
 Session(app)
+basic_metrics.initialize_metrics(SESSION_REDIS)  # Initialize Redis client for metrics tracking
 
 # Load environment variables
 load_dotenv()
@@ -183,19 +186,30 @@ def chat():
         if client is None:
             return jsonify({"error": "Service temporarily unavailable. Try again later."}), 500
         
+
         # Send request to OpenAI  including conversation history
         try:
+            start_time = time.time() # Start tracking response time
+
             response = client.chat.completions.create(
                 model="gpt-4o-mini",
                 messages=messages,
-                max_completion_tokens=1500,
+                max_completion_tokens=800,
                 temperature=0.7,
             )
             logger.info("OpenAI call successful.")
+
+            end_time = time.time()  
+            response_time = end_time - start_time # Calculate response time in seconds
+            tokens_used = response.usage.total_tokens # Track tokens used
+            basic_metrics.track_metrics(response_time, tokens_used, success=True) # Track metrics for successful requests
+            logger.info(f"API call completed - Time: {response_time:.2f}s, Tokens: {tokens_used}")
+            
             # Retrieve AI response
             ai_response = response.choices[0].message.content
             logger.info(f"AI response received: {ai_response}")
         except Exception as e:
+            basic_metrics.track_metrics(0, 0, success=False) # Track metrics for failed requests
             logger.error(f"Error during OpenAI call: {e}")
             return jsonify({"error": "Service temporarily unavailable. Try again later."}), 500
 
@@ -207,6 +221,11 @@ def chat():
         session["messages"] = messages
 
         return jsonify({"response": ai_response})
+
+# Endpoint to view current chatbot metrics
+@app.route('/metrics')
+def get_metrics():
+    return jsonify(basic_metrics.get_metrics_summary())
 
 if __name__ == "__main__":
     startup_validation()  

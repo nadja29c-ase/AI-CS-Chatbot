@@ -1,0 +1,350 @@
+2025-08-20 09:38:56,198 - __main__ - INFO - ✅ Application validation successful
+2025-08-20 09:51:59,483 - __main__ - INFO - ✅ Application validation successful
+2025-08-20 09:54:31,816 - __main__ - INFO - ✅ Application validation successful
+2025-08-20 09:54:31,849 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5001
+ * Running on http://192.168.178.21:5001
+2025-08-20 09:54:31,849 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-08-20 09:54:51,370 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2025 09:54:51] "GET / HTTP/1.1" 200 -
+2025-08-20 09:54:51,443 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2025 09:54:51] "GET /static/techmarkt_translated_resized.png HTTP/1.1" 200 -
+2025-08-20 09:55:01,539 - __main__ - INFO - POST request received
+2025-08-20 09:55:01,587 - __main__ - INFO - User message received: Hallo, wie ist das wetter heute in Berlin?
+2025-08-20 09:55:01,588 - __main__ - INFO - No messages in session, initializing conversation with system prompts.
+2025-08-20 09:55:01,593 - __main__ - INFO - System prompts loaded successfully.
+2025-08-20 09:55:01,594 - __main__ - INFO - User message added to conversation: Hallo, wie ist das wetter heute in Berlin?
+2025-08-20 09:55:04,115 - httpx - INFO - HTTP Request: GET https://api.openai.com/v1/models "HTTP/1.1 200 OK"
+2025-08-20 09:55:04,135 - __main__ - INFO - OpenAI client created successfully.
+2025-08-20 09:55:05,956 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-20 09:55:05,983 - __main__ - INFO - OpenAI call successful.
+2025-08-20 09:55:05,984 - __main__ - INFO - AI response received: Es tut mir leid, aber ich kann keine aktuellen Wetterinformationen bereitstellen. Ich empfehle, eine Wetter-App oder eine Website zu besuchen, um die neuesten Informationen für Berlin zu erhalten. Wenn Sie Fragen zu unseren Produkten oder Dienstleistungen haben, helfe ich Ihnen gerne weiter!
+2025-08-20 09:55:05,984 - __main__ - INFO - AI response added to conversation history: Es tut mir leid, aber ich kann keine aktuellen Wetterinformationen bereitstellen. Ich empfehle, eine Wetter-App oder eine Website zu besuchen, um die neuesten Informationen für Berlin zu erhalten. Wenn Sie Fragen zu unseren Produkten oder Dienstleistungen haben, helfe ich Ihnen gerne weiter!
+2025-08-20 09:55:05,986 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2025 09:55:05] "POST /chat HTTP/1.1" 200 -
+2025-08-20 09:57:28,036 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2025 09:57:28] "[33mGET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1[0m" 404 -
+2025-08-20 10:14:58,012 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2025 10:14:58] "GET / HTTP/1.1" 200 -
+2025-08-20 10:14:58,152 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2025 10:14:58] "[36mGET /static/techmarkt_translated_resized.png HTTP/1.1[0m" 304 -
+2025-08-20 10:14:58,397 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2025 10:14:58] "[33mGET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1[0m" 404 -
+2025-08-20 10:15:21,589 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2025 10:15:21] "GET / HTTP/1.1" 200 -
+2025-08-20 10:15:21,653 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2025 10:15:21] "GET /static/techmarkt_translated_resized.png HTTP/1.1" 200 -
+2025-08-20 10:15:28,006 - __main__ - INFO - POST request received
+2025-08-20 10:15:28,010 - __main__ - INFO - User message received: Wie heißt du?
+2025-08-20 10:15:28,011 - __main__ - INFO - No messages in session, initializing conversation with system prompts.
+2025-08-20 10:15:28,022 - __main__ - INFO - System prompts loaded successfully.
+2025-08-20 10:15:28,022 - __main__ - INFO - User message added to conversation: Wie heißt du?
+2025-08-20 10:15:29,029 - httpx - INFO - HTTP Request: GET https://api.openai.com/v1/models "HTTP/1.1 200 OK"
+2025-08-20 10:15:29,050 - __main__ - INFO - OpenAI client created successfully.
+2025-08-20 10:15:30,578 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-20 10:15:30,582 - __main__ - INFO - OpenAI call successful.
+2025-08-20 10:15:30,582 - __main__ - INFO - AI response received: Ich bin ein freundlicher Kundenservice-Chatbot von TechMarkt. Wie kann ich Ihnen heute helfen?
+2025-08-20 10:15:30,582 - __main__ - INFO - AI response added to conversation history: Ich bin ein freundlicher Kundenservice-Chatbot von TechMarkt. Wie kann ich Ihnen heute helfen?
+2025-08-20 10:15:30,584 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2025 10:15:30] "POST /chat HTTP/1.1" 200 -
+2025-08-20 10:16:16,578 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2025 10:16:16] "GET / HTTP/1.1" 200 -
+2025-08-20 10:16:16,641 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2025 10:16:16] "GET /static/techmarkt_translated_resized.png HTTP/1.1" 200 -
+2025-08-20 10:16:23,444 - __main__ - INFO - POST request received
+2025-08-20 10:16:23,447 - __main__ - INFO - User message received: Wer bist du?
+2025-08-20 10:16:23,447 - __main__ - INFO - No messages in session, initializing conversation with system prompts.
+2025-08-20 10:16:23,449 - __main__ - INFO - System prompts loaded successfully.
+2025-08-20 10:16:23,449 - __main__ - INFO - User message added to conversation: Wer bist du?
+2025-08-20 10:16:24,104 - httpx - INFO - HTTP Request: GET https://api.openai.com/v1/models "HTTP/1.1 200 OK"
+2025-08-20 10:16:24,223 - __main__ - INFO - OpenAI client created successfully.
+2025-08-20 10:16:25,994 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-20 10:16:25,997 - __main__ - INFO - OpenAI call successful.
+2025-08-20 10:16:25,997 - __main__ - INFO - AI response received: Ich bin ein freundlicher Kundenservice-Chatbot von TechMarkt. Ich bin hier, um Ihnen Informationen zu unseren Produkten zu geben, Ihnen bei Ihren Kaufentscheidungen zu helfen und sicherzustellen, dass Ihre Bestellungen schnell und reibungslos bearbeitet werden. Wenn Sie Fragen zu unseren Produkten oder Dienstleistungen haben, stehe ich Ihnen gerne zur Verfügung!
+2025-08-20 10:16:25,997 - __main__ - INFO - AI response added to conversation history: Ich bin ein freundlicher Kundenservice-Chatbot von TechMarkt. Ich bin hier, um Ihnen Informationen zu unseren Produkten zu geben, Ihnen bei Ihren Kaufentscheidungen zu helfen und sicherzustellen, dass Ihre Bestellungen schnell und reibungslos bearbeitet werden. Wenn Sie Fragen zu unseren Produkten oder Dienstleistungen haben, stehe ich Ihnen gerne zur Verfügung!
+2025-08-20 10:16:25,999 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2025 10:16:25] "POST /chat HTTP/1.1" 200 -
+2025-08-20 10:27:35,409 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2025 10:27:35] "GET / HTTP/1.1" 200 -
+2025-08-20 10:27:35,466 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2025 10:27:35] "GET /static/techmarkt_translated_resized.png HTTP/1.1" 200 -
+2025-08-20 10:27:43,980 - __main__ - INFO - POST request received
+2025-08-20 10:27:43,984 - __main__ - INFO - User message received: Hallo, wer bist du?
+2025-08-20 10:27:43,984 - __main__ - INFO - No messages in session, initializing conversation with system prompts.
+2025-08-20 10:27:44,003 - __main__ - INFO - System prompts loaded successfully.
+2025-08-20 10:27:44,003 - __main__ - INFO - User message added to conversation: Hallo, wer bist du?
+2025-08-20 10:27:45,349 - httpx - INFO - HTTP Request: GET https://api.openai.com/v1/models "HTTP/1.1 200 OK"
+2025-08-20 10:27:45,527 - __main__ - INFO - OpenAI client created successfully.
+2025-08-20 10:27:49,620 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-20 10:27:49,623 - __main__ - INFO - OpenAI call successful.
+2025-08-20 10:27:49,623 - __main__ - INFO - AI response received: Hallo! Ich bin der Kundenservice-Chatbot von TechMarkt. Ich bin hier, um Ihnen bei Fragen zu unseren Produkten, Bestellungen oder anderen Anliegen zu helfen. Wie kann ich Ihnen heute behilflich sein?
+2025-08-20 10:27:49,623 - __main__ - INFO - AI response added to conversation history: Hallo! Ich bin der Kundenservice-Chatbot von TechMarkt. Ich bin hier, um Ihnen bei Fragen zu unseren Produkten, Bestellungen oder anderen Anliegen zu helfen. Wie kann ich Ihnen heute behilflich sein?
+2025-08-20 10:27:49,629 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2025 10:27:49] "POST /chat HTTP/1.1" 200 -
+2025-08-20 10:35:49,401 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2025 10:35:49] "GET / HTTP/1.1" 200 -
+2025-08-20 10:35:49,454 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2025 10:35:49] "GET /static/techmarkt_translated_resized.png HTTP/1.1" 200 -
+2025-08-20 10:35:59,836 - __main__ - INFO - POST request received
+2025-08-20 10:35:59,838 - __main__ - INFO - User message received: Hallo, wer bist du eigentlich?
+2025-08-20 10:35:59,839 - __main__ - INFO - No messages in session, initializing conversation with system prompts.
+2025-08-20 10:35:59,847 - __main__ - INFO - System prompts loaded successfully.
+2025-08-20 10:35:59,848 - __main__ - INFO - User message added to conversation: Hallo, wer bist du eigentlich?
+2025-08-20 10:36:00,552 - httpx - INFO - HTTP Request: GET https://api.openai.com/v1/models "HTTP/1.1 200 OK"
+2025-08-20 10:36:00,566 - __main__ - INFO - OpenAI client created successfully.
+2025-08-20 10:36:03,213 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-20 10:36:03,215 - __main__ - INFO - OpenAI call successful.
+2025-08-20 10:36:03,216 - __main__ - INFO - AI response received: Hallo! Ich bin ein freundlicher Kundenservice-Chatbot von TechMarkt. Mein Ziel ist es, Ihnen bei Fragen zu unseren Produkten zu helfen, Empfehlungen auszusprechen und den Bestellprozess zu unterstützen. Wie kann ich Ihnen heute behilflich sein?
+2025-08-20 10:36:03,216 - __main__ - INFO - AI response added to conversation history: Hallo! Ich bin ein freundlicher Kundenservice-Chatbot von TechMarkt. Mein Ziel ist es, Ihnen bei Fragen zu unseren Produkten zu helfen, Empfehlungen auszusprechen und den Bestellprozess zu unterstützen. Wie kann ich Ihnen heute behilflich sein?
+2025-08-20 10:36:03,219 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2025 10:36:03] "POST /chat HTTP/1.1" 200 -
+2025-08-20 10:51:57,705 - __main__ - INFO - ✅ Application validation successful
+2025-08-20 10:51:57,735 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5001
+ * Running on http://192.168.178.21:5001
+2025-08-20 10:51:57,735 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-08-20 10:52:19,696 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2025 10:52:19] "GET / HTTP/1.1" 200 -
+2025-08-20 10:52:19,749 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2025 10:52:19] "GET /static/techmarkt_translated_resized.png HTTP/1.1" 200 -
+2025-08-20 10:52:27,357 - __main__ - INFO - POST request received
+2025-08-20 10:52:27,361 - __main__ - INFO - User message received: Hallo, wer bis du eigentlich?
+2025-08-20 10:52:27,362 - __main__ - INFO - No messages in session, initializing conversation with system prompts.
+2025-08-20 10:52:27,370 - __main__ - ERROR - Error loading system prompts: [Errno 2] No such file or directory: 'sys_prompt.txt1'
+2025-08-20 10:52:27,373 - __main__ - INFO - PROMPTS KEYS: []
+2025-08-20 10:52:27,375 - __main__ - INFO - PROMPTS EMPTY? True
+2025-08-20 10:52:27,375 - __main__ - INFO - NUMBER OF PROMPTS LOADED: 0
+2025-08-20 10:52:27,376 - __main__ - ERROR - EMPTY PROMPTS DETECTED - RETURNING ERROR TO USER
+2025-08-20 10:52:27,377 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2025 10:52:27] "[35m[1mPOST /chat HTTP/1.1[0m" 500 -
+2025-08-20 10:58:28,687 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2025 10:58:28] "GET / HTTP/1.1" 200 -
+2025-08-20 10:58:28,727 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2025 10:58:28] "GET /static/techmarkt_translated_resized.png HTTP/1.1" 200 -
+2025-08-20 10:59:01,585 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2025 10:59:01] "GET / HTTP/1.1" 200 -
+2025-08-20 10:59:01,623 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2025 10:59:01] "[36mGET /static/techmarkt_translated_resized.png HTTP/1.1[0m" 304 -
+2025-08-20 10:59:27,597 - __main__ - INFO - POST request received
+2025-08-20 10:59:27,599 - __main__ - INFO - User message received: Hallo, ich mache UI UX Design und brauche eine entsprechende Homeoffice workstation
+2025-08-20 10:59:27,599 - __main__ - INFO - No messages in session, initializing conversation with system prompts.
+2025-08-20 10:59:27,599 - __main__ - ERROR - Error loading system prompts: [Errno 2] No such file or directory: 'sys_prompt.txt1'
+2025-08-20 10:59:27,599 - __main__ - INFO - PROMPTS KEYS: []
+2025-08-20 10:59:27,600 - __main__ - INFO - PROMPTS EMPTY? True
+2025-08-20 10:59:27,600 - __main__ - INFO - NUMBER OF PROMPTS LOADED: 0
+2025-08-20 10:59:27,601 - __main__ - ERROR - EMPTY PROMPTS DETECTED - RETURNING ERROR TO USER
+2025-08-20 10:59:27,601 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2025 10:59:27] "[35m[1mPOST /chat HTTP/1.1[0m" 500 -
+2025-08-20 11:00:08,383 - __main__ - INFO - ✅ Application validation successful
+2025-08-20 11:00:08,409 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5001
+ * Running on http://192.168.178.21:5001
+2025-08-20 11:00:08,409 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-08-20 11:00:23,764 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2025 11:00:23] "GET / HTTP/1.1" 200 -
+2025-08-20 11:00:23,813 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2025 11:00:23] "GET /static/techmarkt_translated_resized.png HTTP/1.1" 200 -
+2025-08-20 11:00:50,605 - __main__ - INFO - POST request received
+2025-08-20 11:00:50,612 - __main__ - INFO - User message received: Hallo, ich bin eine UI UX Designerin und brauche eine Homeoffice workstation
+2025-08-20 11:00:50,612 - __main__ - INFO - No messages in session, initializing conversation with system prompts.
+2025-08-20 11:00:50,616 - __main__ - INFO - System prompts loaded successfully.
+2025-08-20 11:00:50,617 - __main__ - INFO - User message added to conversation: Hallo, ich bin eine UI UX Designerin und brauche eine Homeoffice workstation
+2025-08-20 11:00:52,329 - httpx - INFO - HTTP Request: GET https://api.openai.com/v1/models "HTTP/1.1 200 OK"
+2025-08-20 11:00:52,342 - __main__ - INFO - OpenAI client created successfully.
+2025-08-20 11:01:00,518 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-20 11:01:00,537 - __main__ - INFO - OpenAI call successful.
+2025-08-20 11:01:00,538 - __main__ - INFO - AI response received: Hallo! Für eine Homeoffice-Workstation, die sich gut für UI/UX-Design eignet, empfehle ich folgende Produkte:
+
+1. **Laptop**: 
+   - **Apple MacBook Pro 14**: M1 Pro Chip, 16GB RAM, 512GB SSD, €1,999. Dieser Laptop bietet ausgezeichnete Leistung und ein brillantes Display, ideal für Designarbeiten.
+   - **Dell XPS 15**: Intel i7, 16GB RAM, 512GB SSD, €1,799. Ein leistungsstarker Laptop mit einem hochauflösenden Bildschirm, perfekt für kreative Arbeiten.
+
+2. **Monitor**:
+   - **Dell UltraSharp 27" Monitor**: 4K UHD, IPS-Panel, €599. Dieser Monitor bietet eine hervorragende Farbgenauigkeit und ist ideal für grafische Gestaltung.
+   - **LG 27" QHD Monitor**: 2560 x 1440 Auflösung, €399. Ein guter Kompromiss zwischen Preis und Bildqualität.
+
+3. **Tastatur und Maus**:
+   - **Logitech MX Keys Tastatur**: ca. €109. Diese Tastatur bietet ein angenehmes Tippgefühl und eine gute Ergonomie.
+   - **Logitech MX Master 3 Maus**: ca. €99. Diese Maus ist perfekt für Designer, da sie präzise Steuerung und viele programmierbare Tasten bietet.
+
+Mit dieser Ausstattung bist du gut gerüstet für deine Designprojekte. Möchtest du mehr Informationen zu einem bestimmten Produkt oder möchtest du eine Bestellung aufgeben?
+2025-08-20 11:01:00,538 - __main__ - INFO - AI response added to conversation history: Hallo! Für eine Homeoffice-Workstation, die sich gut für UI/UX-Design eignet, empfehle ich folgende Produkte:
+
+1. **Laptop**: 
+   - **Apple MacBook Pro 14**: M1 Pro Chip, 16GB RAM, 512GB SSD, €1,999. Dieser Laptop bietet ausgezeichnete Leistung und ein brillantes Display, ideal für Designarbeiten.
+   - **Dell XPS 15**: Intel i7, 16GB RAM, 512GB SSD, €1,799. Ein leistungsstarker Laptop mit einem hochauflösenden Bildschirm, perfekt für kreative Arbeiten.
+
+2. **Monitor**:
+   - **Dell UltraSharp 27" Monitor**: 4K UHD, IPS-Panel, €599. Dieser Monitor bietet eine hervorragende Farbgenauigkeit und ist ideal für grafische Gestaltung.
+   - **LG 27" QHD Monitor**: 2560 x 1440 Auflösung, €399. Ein guter Kompromiss zwischen Preis und Bildqualität.
+
+3. **Tastatur und Maus**:
+   - **Logitech MX Keys Tastatur**: ca. €109. Diese Tastatur bietet ein angenehmes Tippgefühl und eine gute Ergonomie.
+   - **Logitech MX Master 3 Maus**: ca. €99. Diese Maus ist perfekt für Designer, da sie präzise Steuerung und viele programmierbare Tasten bietet.
+
+Mit dieser Ausstattung bist du gut gerüstet für deine Designprojekte. Möchtest du mehr Informationen zu einem bestimmten Produkt oder möchtest du eine Bestellung aufgeben?
+2025-08-20 11:01:00,540 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2025 11:01:00] "POST /chat HTTP/1.1" 200 -
+2025-08-20 11:01:35,832 - __main__ - INFO - POST request received
+2025-08-20 11:01:35,833 - __main__ - INFO - User message received: Ja bitte
+2025-08-20 11:01:35,834 - __main__ - INFO - User message added to conversation: Ja bitte
+2025-08-20 11:01:36,769 - httpx - INFO - HTTP Request: GET https://api.openai.com/v1/models "HTTP/1.1 200 OK"
+2025-08-20 11:01:36,781 - __main__ - INFO - OpenAI client created successfully.
+2025-08-20 11:01:39,431 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-20 11:01:39,433 - __main__ - INFO - OpenAI call successful.
+2025-08-20 11:01:39,433 - __main__ - INFO - AI response received: Könntest du mir bitte deinen Namen und deine E-Mail-Adresse geben? Dann kann ich die Bestellung für dich aufgeben oder dich mit einem menschlichen Agenten verbinden, der dir weiterhelfen kann.
+2025-08-20 11:01:39,433 - __main__ - INFO - AI response added to conversation history: Könntest du mir bitte deinen Namen und deine E-Mail-Adresse geben? Dann kann ich die Bestellung für dich aufgeben oder dich mit einem menschlichen Agenten verbinden, der dir weiterhelfen kann.
+2025-08-20 11:01:39,435 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2025 11:01:39] "POST /chat HTTP/1.1" 200 -
+2025-08-20 16:05:01,333 - __main__ - INFO - ✅ Application validation successful
+2025-08-20 16:05:01,376 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5001
+ * Running on http://192.168.178.21:5001
+2025-08-20 16:05:01,376 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-08-20 16:07:03,310 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2025 16:07:03] "GET /metrics HTTP/1.1" 200 -
+2025-08-20 19:29:38,081 - __main__ - INFO - ✅ Application validation successful
+2025-08-20 19:29:38,124 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5001
+ * Running on http://192.168.178.21:5001
+2025-08-20 19:29:38,134 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-08-20 19:30:35,818 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2025 19:30:35] "GET / HTTP/1.1" 200 -
+2025-08-20 19:30:35,893 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2025 19:30:35] "GET /static/techmarkt_translated_resized.png HTTP/1.1" 200 -
+2025-08-20 19:30:43,457 - __main__ - INFO - POST request received
+2025-08-20 19:30:43,509 - __main__ - INFO - User message received: Hi, I need a smart tv
+2025-08-20 19:30:43,510 - __main__ - INFO - No messages in session, initializing conversation with system prompts.
+2025-08-20 19:30:43,511 - __main__ - INFO - System prompts loaded successfully.
+2025-08-20 19:30:43,512 - __main__ - INFO - User message added to conversation: Hi, I need a smart tv
+2025-08-20 19:30:45,718 - httpx - INFO - HTTP Request: GET https://api.openai.com/v1/models "HTTP/1.1 200 OK"
+2025-08-20 19:30:45,730 - __main__ - INFO - OpenAI client created successfully.
+2025-08-20 19:30:48,787 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-20 19:30:48,809 - __main__ - INFO - OpenAI call successful.
+2025-08-20 19:30:48,852 - __main__ - INFO - API call completed - Time: 3.08s, Tokens: 2613
+2025-08-20 19:30:48,852 - __main__ - INFO - AI response received: Great choice! Here are a couple of Smart TV options available at TechMarkt:
+
+1. **Samsung QLED 55"**:  
+   - 4K UHD resolution  
+   - Smart TV features  
+   - Price: €899  
+
+2. **LG OLED 65"**:  
+   - 4K UHD resolution  
+   - Smart TV features  
+   - Price: €1,499  
+
+Both options provide excellent picture quality and smart features for streaming your favorite shows. Would you like more information on either of these models, or do you have a specific size or feature in mind?
+2025-08-20 19:30:48,852 - __main__ - INFO - AI response added to conversation history: Great choice! Here are a couple of Smart TV options available at TechMarkt:
+
+1. **Samsung QLED 55"**:  
+   - 4K UHD resolution  
+   - Smart TV features  
+   - Price: €899  
+
+2. **LG OLED 65"**:  
+   - 4K UHD resolution  
+   - Smart TV features  
+   - Price: €1,499  
+
+Both options provide excellent picture quality and smart features for streaming your favorite shows. Would you like more information on either of these models, or do you have a specific size or feature in mind?
+2025-08-20 19:30:48,855 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2025 19:30:48] "POST /chat HTTP/1.1" 200 -
+2025-08-20 19:31:04,934 - __main__ - INFO - POST request received
+2025-08-20 19:31:04,937 - __main__ - INFO - User message received: Cool, I will opt for option 2
+2025-08-20 19:31:04,937 - __main__ - INFO - User message added to conversation: Cool, I will opt for option 2
+2025-08-20 19:31:05,438 - httpx - INFO - HTTP Request: GET https://api.openai.com/v1/models "HTTP/1.1 200 OK"
+2025-08-20 19:31:05,451 - __main__ - INFO - OpenAI client created successfully.
+2025-08-20 19:31:07,628 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-20 19:31:07,630 - __main__ - INFO - OpenAI call successful.
+2025-08-20 19:31:07,631 - __main__ - INFO - API call completed - Time: 2.18s, Tokens: 2699
+2025-08-20 19:31:07,631 - __main__ - INFO - AI response received: Excellent choice! The **LG OLED 65"** is a fantastic television with stunning picture quality and vibrant colors. 
+
+Would you like me to assist you with placing the order for the LG OLED 65" Smart TV for €1,499? If you have any specific questions or need help with the ordering process, just let me know!
+2025-08-20 19:31:07,632 - __main__ - INFO - AI response added to conversation history: Excellent choice! The **LG OLED 65"** is a fantastic television with stunning picture quality and vibrant colors. 
+
+Would you like me to assist you with placing the order for the LG OLED 65" Smart TV for €1,499? If you have any specific questions or need help with the ordering process, just let me know!
+2025-08-20 19:31:07,634 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2025 19:31:07] "POST /chat HTTP/1.1" 200 -
+2025-08-20 19:31:19,000 - __main__ - INFO - POST request received
+2025-08-20 19:31:19,003 - __main__ - INFO - User message received: Can you send it express?
+2025-08-20 19:31:19,003 - __main__ - INFO - User message added to conversation: Can you send it express?
+2025-08-20 19:31:19,490 - httpx - INFO - HTTP Request: GET https://api.openai.com/v1/models "HTTP/1.1 200 OK"
+2025-08-20 19:31:19,535 - __main__ - INFO - OpenAI client created successfully.
+2025-08-20 19:31:21,477 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-20 19:31:21,479 - __main__ - INFO - OpenAI call successful.
+2025-08-20 19:31:21,480 - __main__ - INFO - API call completed - Time: 1.94s, Tokens: 2783
+2025-08-20 19:31:21,480 - __main__ - INFO - AI response received: Yes, we can send the LG OLED 65" Smart TV via express shipping! The expedited shipping option will deliver your order within 1-2 business days for an additional cost of €14.99.
+
+Would you like to proceed with the express shipping option? If so, please provide your shipping address and any other details needed for the order.
+2025-08-20 19:31:21,480 - __main__ - INFO - AI response added to conversation history: Yes, we can send the LG OLED 65" Smart TV via express shipping! The expedited shipping option will deliver your order within 1-2 business days for an additional cost of €14.99.
+
+Would you like to proceed with the express shipping option? If so, please provide your shipping address and any other details needed for the order.
+2025-08-20 19:31:21,481 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2025 19:31:21] "POST /chat HTTP/1.1" 200 -
+2025-08-20 19:31:46,344 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2025 19:31:46] "GET / HTTP/1.1" 200 -
+2025-08-20 19:31:46,385 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2025 19:31:46] "GET /static/techmarkt_translated_resized.png HTTP/1.1" 200 -
+2025-08-20 19:31:58,804 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2025 19:31:58] "GET /metrics HTTP/1.1" 200 -
+2025-08-20 19:32:21,612 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2025 19:32:21] "GET / HTTP/1.1" 200 -
+2025-08-20 19:32:21,665 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2025 19:32:21] "[36mGET /static/techmarkt_translated_resized.png HTTP/1.1[0m" 304 -
+2025-08-20 19:32:27,900 - __main__ - INFO - POST request received
+2025-08-20 19:32:27,903 - __main__ - INFO - User message received: Who are you?
+2025-08-20 19:32:27,904 - __main__ - INFO - No messages in session, initializing conversation with system prompts.
+2025-08-20 19:32:28,029 - __main__ - INFO - System prompts loaded successfully.
+2025-08-20 19:32:28,031 - __main__ - INFO - User message added to conversation: Who are you?
+2025-08-20 19:32:28,522 - httpx - INFO - HTTP Request: GET https://api.openai.com/v1/models "HTTP/1.1 200 OK"
+2025-08-20 19:32:28,566 - __main__ - INFO - OpenAI client created successfully.
+2025-08-20 19:32:30,979 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-20 19:32:30,980 - __main__ - INFO - OpenAI call successful.
+2025-08-20 19:32:30,981 - __main__ - INFO - API call completed - Time: 2.41s, Tokens: 2535
+2025-08-20 19:32:30,981 - __main__ - INFO - AI response received: I’m a friendly customer support chatbot for TechMarkt, here to help you find the right products, provide information, and assist with your orders. If you have any questions about our products or need assistance, feel free to ask!
+2025-08-20 19:32:30,981 - __main__ - INFO - AI response added to conversation history: I’m a friendly customer support chatbot for TechMarkt, here to help you find the right products, provide information, and assist with your orders. If you have any questions about our products or need assistance, feel free to ask!
+2025-08-20 19:32:30,982 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2025 19:32:30] "POST /chat HTTP/1.1" 200 -
+2025-08-20 19:32:37,213 - __main__ - INFO - POST request received
+2025-08-20 19:32:37,215 - __main__ - INFO - User message received: Ah ok got it
+2025-08-20 19:32:37,216 - __main__ - INFO - User message added to conversation: Ah ok got it
+2025-08-20 19:32:37,943 - httpx - INFO - HTTP Request: GET https://api.openai.com/v1/models "HTTP/1.1 200 OK"
+2025-08-20 19:32:37,954 - __main__ - INFO - OpenAI client created successfully.
+2025-08-20 19:32:38,761 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-20 19:32:38,762 - __main__ - INFO - OpenAI call successful.
+2025-08-20 19:32:38,763 - __main__ - INFO - API call completed - Time: 0.81s, Tokens: 2570
+2025-08-20 19:32:38,764 - __main__ - INFO - AI response received: Great! If you have any questions or need assistance with anything, just let me know. I'm here to help!
+2025-08-20 19:32:38,764 - __main__ - INFO - AI response added to conversation history: Great! If you have any questions or need assistance with anything, just let me know. I'm here to help!
+2025-08-20 19:32:38,765 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2025 19:32:38] "POST /chat HTTP/1.1" 200 -
+2025-08-20 19:32:54,531 - __main__ - INFO - POST request received
+2025-08-20 19:32:54,534 - __main__ - INFO - User message received: Whats your policy on data protection?
+2025-08-20 19:32:54,535 - __main__ - INFO - User message added to conversation: Whats your policy on data protection?
+2025-08-20 19:32:55,554 - httpx - INFO - HTTP Request: GET https://api.openai.com/v1/models "HTTP/1.1 200 OK"
+2025-08-20 19:32:55,565 - __main__ - INFO - OpenAI client created successfully.
+2025-08-20 19:32:58,626 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-20 19:32:58,627 - __main__ - INFO - OpenAI call successful.
+2025-08-20 19:32:58,628 - __main__ - INFO - API call completed - Time: 3.06s, Tokens: 2674
+2025-08-20 19:32:58,628 - __main__ - INFO - AI response received: At TechMarkt, we take data protection very seriously. We comply with GDPR regulations to ensure your personal information is securely stored and used only for fulfilling your orders and improving our services. 
+
+Your data is protected, and we do not share it with third parties without your consent, except as required by law. For more detailed information, you can check our Privacy Policy on our website. If you have any specific questions, feel free to ask!
+2025-08-20 19:32:58,629 - __main__ - INFO - AI response added to conversation history: At TechMarkt, we take data protection very seriously. We comply with GDPR regulations to ensure your personal information is securely stored and used only for fulfilling your orders and improving our services. 
+
+Your data is protected, and we do not share it with third parties without your consent, except as required by law. For more detailed information, you can check our Privacy Policy on our website. If you have any specific questions, feel free to ask!
+2025-08-20 19:32:58,630 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2025 19:32:58] "POST /chat HTTP/1.1" 200 -
+2025-08-20 19:33:09,770 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2025 19:33:09] "GET /metrics HTTP/1.1" 200 -
+2025-08-20 19:33:17,411 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2025 19:33:17] "GET / HTTP/1.1" 200 -
+2025-08-20 19:33:17,455 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2025 19:33:17] "[36mGET /static/techmarkt_translated_resized.png HTTP/1.1[0m" 304 -
+2025-08-20 19:33:22,967 - __main__ - INFO - POST request received
+2025-08-20 19:33:22,971 - __main__ - INFO - User message received: Whats the weather?
+2025-08-20 19:33:22,972 - __main__ - INFO - User message added to conversation: Whats the weather?
+2025-08-20 19:33:24,152 - httpx - INFO - HTTP Request: GET https://api.openai.com/v1/models "HTTP/1.1 200 OK"
+2025-08-20 19:33:24,324 - __main__ - INFO - OpenAI client created successfully.
+2025-08-20 19:33:25,658 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-20 19:33:25,661 - __main__ - INFO - OpenAI call successful.
+2025-08-20 19:33:25,662 - __main__ - INFO - API call completed - Time: 1.34s, Tokens: 2727
+2025-08-20 19:33:25,662 - __main__ - INFO - AI response received: I'm sorry, but I can't provide weather information. However, I can assist you with any questions related to TechMarkt products or services. If you need help with something specific, feel free to ask!
+2025-08-20 19:33:25,662 - __main__ - INFO - AI response added to conversation history: I'm sorry, but I can't provide weather information. However, I can assist you with any questions related to TechMarkt products or services. If you need help with something specific, feel free to ask!
+2025-08-20 19:33:25,663 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2025 19:33:25] "POST /chat HTTP/1.1" 200 -
+2025-08-20 19:33:51,486 - __main__ - INFO - POST request received
+2025-08-20 19:33:51,490 - __main__ - INFO - User message received: which techmarkt devices can predict the weather?
+2025-08-20 19:33:51,491 - __main__ - INFO - User message added to conversation: which techmarkt devices can predict the weather?
+2025-08-20 19:33:52,488 - httpx - INFO - HTTP Request: GET https://api.openai.com/v1/models "HTTP/1.1 200 OK"
+2025-08-20 19:33:52,588 - __main__ - INFO - OpenAI client created successfully.
+2025-08-20 19:33:55,150 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-20 19:33:55,151 - __main__ - INFO - OpenAI call successful.
+2025-08-20 19:33:55,152 - __main__ - INFO - API call completed - Time: 2.56s, Tokens: 2873
+2025-08-20 19:33:55,152 - __main__ - INFO - AI response received: While TechMarkt primarily focuses on consumer electronics and household appliances, we do offer some devices that can provide weather information. Here are a couple of options you might consider:
+
+1. **Smartwatches**: Many smartwatches, such as the Apple Watch or Samsung Galaxy Watch, include weather apps that can give you real-time weather updates based on your location.
+
+2. **Smart Home Devices**: Devices like the Google Nest Hub or Amazon Echo Show can provide weather forecasts and updates through voice commands or on-screen displays.
+
+If you're looking for specific models or features, please let me know, and I can help you find the right device!
+2025-08-20 19:33:55,152 - __main__ - INFO - AI response added to conversation history: While TechMarkt primarily focuses on consumer electronics and household appliances, we do offer some devices that can provide weather information. Here are a couple of options you might consider:
+
+1. **Smartwatches**: Many smartwatches, such as the Apple Watch or Samsung Galaxy Watch, include weather apps that can give you real-time weather updates based on your location.
+
+2. **Smart Home Devices**: Devices like the Google Nest Hub or Amazon Echo Show can provide weather forecasts and updates through voice commands or on-screen displays.
+
+If you're looking for specific models or features, please let me know, and I can help you find the right device!
+2025-08-20 19:33:55,154 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2025 19:33:55] "POST /chat HTTP/1.1" 200 -
+2025-08-20 19:34:18,272 - __main__ - INFO - POST request received
+2025-08-20 19:34:18,275 - __main__ - INFO - User message received: amazing stuff, you are very smart
+2025-08-20 19:34:18,276 - __main__ - INFO - User message added to conversation: amazing stuff, you are very smart
+2025-08-20 19:34:18,700 - httpx - INFO - HTTP Request: GET https://api.openai.com/v1/models "HTTP/1.1 200 OK"
+2025-08-20 19:34:18,785 - __main__ - INFO - OpenAI client created successfully.
+2025-08-20 19:34:20,133 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-20 19:34:20,135 - __main__ - INFO - OpenAI call successful.
+2025-08-20 19:34:20,136 - __main__ - INFO - API call completed - Time: 1.35s, Tokens: 2936
+2025-08-20 19:34:20,136 - __main__ - INFO - AI response received: Thank you for the kind words! I'm here to help you with any questions or information you need about TechMarkt products. If there's anything else you'd like to know or if you need assistance with a purchase, just let me know!
+2025-08-20 19:34:20,136 - __main__ - INFO - AI response added to conversation history: Thank you for the kind words! I'm here to help you with any questions or information you need about TechMarkt products. If there's anything else you'd like to know or if you need assistance with a purchase, just let me know!
+2025-08-20 19:34:20,141 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2025 19:34:20] "POST /chat HTTP/1.1" 200 -
+2025-08-20 19:34:27,858 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2025 19:34:27] "GET /metrics HTTP/1.1" 200 -
+2025-08-20 19:34:33,299 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2025 19:34:33] "GET / HTTP/1.1" 200 -
+2025-08-20 19:34:33,390 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2025 19:34:33] "[36mGET /static/techmarkt_translated_resized.png HTTP/1.1[0m" 304 -
+2025-08-20 19:35:24,448 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2025 19:35:24] "GET / HTTP/1.1" 200 -
+2025-08-20 19:35:24,496 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2025 19:35:24] "GET /static/techmarkt_translated_resized.png HTTP/1.1" 200 -
+2025-08-20 19:35:27,216 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2025 19:35:27] "GET /metrics HTTP/1.1" 200 -
