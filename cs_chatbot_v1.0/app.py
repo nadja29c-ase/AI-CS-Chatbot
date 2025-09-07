@@ -23,7 +23,6 @@ logger = logging.getLogger(__name__)
 
 app = Flask(__name__)
 
-
 # Enable server-side sessions storage
 SESSION_TYPE = "redis"
 redis_url = os.getenv("REDIS_URL", "redis://localhost:6379")
