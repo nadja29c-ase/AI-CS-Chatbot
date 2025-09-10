@@ -1,10 +1,11 @@
-
 # 🤖 AI Customer Support Chatbot
 **TechMarkt Customer Service Chatbot - "Rob"**
 
+Multi-version chatbot project demonstrating AI solution development and technical evolution.
+
 *Note: TechMarkt is a fictional company created for this portfolio project to demonstrate real-world AI solution development.*
 
-![V0.1.0](https://img.shields.io/badge/version-v0.1.0-blue)
+![V1.0](https://img.shields.io/badge/version-v1.0-blue)
 
 ## 📋 Table of Contents
 - [Description](#description)
@@ -18,6 +19,7 @@
 - [Future Enhancements](#future-enhancements)
 
 ## Description
+
 TechMarkt, a leading German online retailer specializing in consumer electronics and household appliances, faces a critical challenge in their digital-first business model: providing personalized customer consultation at scale.
 
 ### Business Problem
@@ -45,7 +47,10 @@ This solution enables TechMarkt to offer the consultation experience that custom
 - Error handling and graceful failure recovery
 - Bilingual conversation capabilities - optimized prompting for high-quality dialogue in German and English
 
-*Technical Notes: Website branding uses AI-generated imagery to create a more realistic demo. System error messages are maintained in English for code review accessibility.*
+*Technical Notes: 
+- Website branding uses AI-generated imagery to create a more realistic demo. 
+- System error messages are maintained in English for code review accessibility.
+- LLM Hallucinations are welcome within the set propmpt constraints in v1.0 for a more realistic demo *
 
 ## Technical Stack
 
@@ -65,9 +70,10 @@ This solution enables TechMarkt to offer the consultation experience that custom
 - Used AI as a learning tutor for full-stack development and AI integration
 - Applied AI tools for architecture decisions and problem-solving
 
-## Future Enhancements (v2.0+)
+## Future Enhancements (v1.1)
 - Token usage optimization with RAG implementation (LangChain)
-- User feedback system for response quality tracking
+- Minimal hallucinations
+
 
 
 

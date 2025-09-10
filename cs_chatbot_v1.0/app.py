@@ -161,6 +161,7 @@ def chat():
             logger.info("No messages in session, initializing conversation with system prompts.")
             # Load system prompts
             prompts = prompt_system()
+            basic_metrics.track_context_tokens(prompts) # Calculate and store context tokens
 
             if prompts == {}:
                 logger.error("EMPTY PROMPTS DETECTED - RETURNING ERROR TO USER")
@@ -172,6 +173,8 @@ def chat():
             {"role": "system", "content": prompts["behaviour_guidelines.txt"]},
             {"role": "assistant", "content": prompts["knowledge_base_techmarkt.txt"]},
             ]
+            
+            
 
         # Conversation storage
         messages = session["messages"]
@@ -199,11 +202,11 @@ def chat():
             logger.info("OpenAI call successful.")
 
             end_time = time.time()  
-            response_time = end_time - start_time # Calculate response time in seconds
-            tokens_used = response.usage.total_tokens # Track tokens used
-            basic_metrics.track_metrics(response_time, tokens_used, success=True) # Track metrics for successful requests
-            logger.info(f"API call completed - Time: {response_time:.2f}s, Tokens: {tokens_used}")
-            
+            response_time_v1_0 = end_time - start_time # Calculate response time in seconds
+            tokens_used_v1_0 = response.usage.total_tokens # Track tokens used
+            basic_metrics.track_metrics(response_time_v1_0, tokens_used_v1_0, success=True) # Track metrics for successful requests
+            logger.info(f"API call completed - Time: {response_time_v1_0:.2f}s, Tokens: {tokens_used_v1_0}")
+
             # Retrieve AI response
             ai_response = response.choices[0].message.content
             logger.info(f"AI response received: {ai_response}")
@@ -229,4 +232,4 @@ def get_metrics():
 if __name__ == "__main__":
     startup_validation()  
     port = int(os.environ.get("PORT", 5001))
-    app.run(host="0.0.0.0", port=port, debug=False)
+    app.run(host="0.0.0.0", port=port, debug=True)
