@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Chatbot</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('/static/techmarkt_translated_resized.png');
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-color: #ffffff;
+            min-height: 100vh;
+        }
+
+        .chat-container {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 350px;
+        height: 450px;
+        background-color:#cccccc;
+        border-radius: 10px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        padding: 15px;
+        z-index: 1000;
+        }
+        
+        h1 {
+            color: #2069fb;;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        
+        #chat-messages {
+            flex: 1;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            width: 100%;
+            overflow-y: auto;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-sizing: border-box;
+        }
+        
+        #chat-messages p {
+            margin: 0;
+            padding: 10px;
+            border-radius: 8px;
+            line-height: 1.4;
+        }
+        
+        .input-container {
+            display: flex;
+            gap: 10px;
+        }
+        
+        #message-input {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 25px;
+            font-size: 16px;
+            outline: none;
+        }
+        
+        #message-input:focus {
+            border-color: #007bff;
+        }
+        
+        button {
+            padding: 12px 24px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        
+        button:hover {
+            background-color: #0056b3;
+        }
+        
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+    </style>
+        
+    
+</head>
+<body>
+    <div class="chat-container">
+        <h1>Chatte mit Rob</h1>
+        <div id="chat-messages">
+            <p><strong>Rob:</strong> Hi! Ich bin Rob, dein KI-Assistent. Wie kann ich dir helfen?</p>
+        </div>
+        <div id="chat-status" style="display: none; padding: 5px; font-size: 14px;"></div>
+        <div class="input-container">
+            <input type="text" id="message-input" placeholder="Hier eingeben...">
+            <button onclick="sendMessage()">Senden</button>
+        </div>
+    </div>
+    
+    <script>
+    function sendMessage() {
+        const input = document.getElementById('message-input');
+        if (!input) {
+            console.error('Message input field not found');
+            return;
+        }
+        const message = input.value.trim();
+    
+        // Don't send empty messages - check BEFORE adding to chat
+        if (message === '') {
+        return;
+        }
+    
+        // Add user message to chat only after validation
+        addMessageToChat('Kunde', message);
+    
+        // Clear the input box
+        input.value = '';
+    
+        // Disable input during request to prevent double-sending
+        input.disabled = true;
+    
+        // Show typing indicator
+        showTypingIndicator();
+    
+        // Send HTTP request to Flask
+        fetch('/chat', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({message: message})
+        })
+        .then(response => {
+            // Always parse JSON to get backend error messages
+            return response.json().then(data => {
+                if (!response.ok) {
+                    console.error('Backend error:', response.status, data.error || data.message);
+                    // Use error message from your Flask backend
+                    throw new Error(data.error || data.message || 'An unexpected error occurred. Please try again later.');
+                }
+                return data;
+            });
+        })
+        .then(data => {
+            hideTypingIndicator();
+            console.log('Message sent successfully, response received');
+            addMessageToChat('Rob', data.response);
+        })
+        .catch(error => {
+            hideTypingIndicator();
+            console.error('Chat error:', error);
+        
+            // Handle different error types
+            if (error instanceof TypeError && error.message.includes('Failed to fetch')) {
+                // Network failure - can't reach server
+                addErrorToChat('Unable to connect to the server. Please check your internet connection.');
+            } else {
+                // All other errors - use message from Flask backend or fallback
+                addErrorToChat(error.message);
+            }
+        })
+        .finally(() => {
+            // Always re-enable input, regardless of success or failure
+            input.disabled = false;
+            input.focus();
+        });
+    }
+
+    function addMessageToChat(sender, message) {
+        const chatMessages = document.getElementById('chat-messages');
+        if (!chatMessages) {
+            console.error('Chat messages container not found');
+            return;
+        }
+        const messageElement = document.createElement('p');
+    
+        // Replace line breaks with HTML line breaks and escape HTML for security
+        const formattedMessage = escapeHtml(message).replace(/\n/g, '<br>');
+        messageElement.innerHTML = `<strong>${escapeHtml(sender)}:</strong> ${formattedMessage}`;
+    
+        chatMessages.appendChild(messageElement);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    function addErrorToChat(errorMessage) {
+        const chatMessages = document.getElementById('chat-messages');
+        if (!chatMessages) {  
+            console.error('Chat messages container not found');
+            return;
+        }
+        const messageElement = document.createElement('p');
+    
+        // Style error messages to stand out and escape for security
+        messageElement.style.color = '#d32f2f';
+        messageElement.style.fontStyle = 'italic';
+        messageElement.innerHTML = `<strong>⚠️ Error:</strong> ${escapeHtml(errorMessage)}`;
+
+        chatMessages.appendChild(messageElement);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    function escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+    }
+
+    function showTypingIndicator() {
+        const statusArea = document.getElementById('chat-status');
+        if (statusArea) {
+            statusArea.innerHTML = '<span style="font-style: italic; color: #666;">Rob tippt...</span>';
+            statusArea.style.display = 'block';
+        }
+    }
+
+    function hideTypingIndicator() {
+        const statusArea = document.getElementById('chat-status');
+        if (statusArea) {
+            statusArea.innerHTML = '';
+            statusArea.style.display = 'none';
+        }
+    }
+
+    // Add Enter key support
+    document.addEventListener('DOMContentLoaded', function() {
+        const input = document.getElementById('message-input');
+        if (input) {
+            input.addEventListener('keypress', function(event) {
+                if (event.key === 'Enter') {
+                    event.preventDefault();
+                    sendMessage();
+                }
+            });
+        }
+    });
+</script>
+</body>
+</html>
