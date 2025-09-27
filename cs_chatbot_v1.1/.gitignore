@@ -9,3 +9,4 @@ poetry.lock
 pyproject.toml
 *.log
 chroma_db/
+.vscode/
