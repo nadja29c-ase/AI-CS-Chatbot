@@ -9,12 +9,16 @@ from typing import Optional
 
 logger = logging.getLogger(__name__)
 
-# Configure service-specific logging.
-rag_handler = logging.FileHandler("logs/rag_service.log")
-rag_handler.setLevel(logging.INFO)
-rag_formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
-rag_handler.setFormatter(rag_formatter)
-logger.addHandler(rag_handler)
+# Configure service-specific logging (file logging only in development).
+deployment_env = os.getenv("DEPLOYMENT_ENV", "development")
+
+if deployment_env == "development":
+    rag_handler = logging.FileHandler("logs/rag_service.log")
+    rag_handler.setLevel(logging.INFO)
+    rag_formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
+    rag_handler.setFormatter(rag_formatter)
+    logger.addHandler(rag_handler)
+
 logger.setLevel(logging.INFO)
 
 class RAGService:

@@ -15,13 +15,17 @@ app = Flask(__name__)
 # === CONFIGURATION ===
 
 # Configure root logging.
+# In production (Render), use console logging only. In development, log to both file and console.
+deployment_env = os.getenv("DEPLOYMENT_ENV", "development")
+handlers = [logging.StreamHandler()]  # Always log to console
+
+if deployment_env == "development":
+    handlers.append(logging.FileHandler("logs/chatbot.log"))  # Also log to file in dev
+
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
-    handlers=[
-        logging.FileHandler("logs/chatbot.log"),    # Saves to file
-        logging.StreamHandler()                # Shows in terminal
-    ]
+    handlers=handlers
 )
 
 logger = logging.getLogger(__name__)
