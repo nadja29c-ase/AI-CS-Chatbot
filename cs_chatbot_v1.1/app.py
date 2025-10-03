@@ -1,5 +1,6 @@
-from flask import Flask, request, session, render_template, redirect, url_for, jsonify
+from flask import Flask, request, session, render_template, redirect, url_for, jsonify, Response
 from flask_session import Session
+import json
 from dotenv import load_dotenv
 import os
 import sys
@@ -34,7 +35,6 @@ redis_url = os.getenv("REDIS_URL", "redis://localhost:6379")
 SESSION_REDIS = Redis.from_url(redis_url)
 app.config.from_object(__name__)
 Session(app)
-basic_metrics.initialize_metrics(SESSION_REDIS)  # Initialize Redis client for metrics tracking
 
 # Enable session management.
 app.secret_key = os.getenv("FLASK_SECRET_KEY")
@@ -55,24 +55,34 @@ def startup_validation():
 
 # Check if environment variables exist.
 def validate_environment_vars():
-    required_vars = ["OPENAI_API_KEY", "FLASK_SECRET_KEY", "REDIS_URL"]
-    faulty_vars = []
+    required_vars = ["OPENAI_API_KEY", "FLASK_SECRET_KEY", "REDIS_URL", "DEPLOYMENT_ENV"]
 
-    for var in required_vars:
-        if not os.getenv(var):
-            faulty_vars.append(var)
+    # First check base required vars (needed for all environments).
+    missing_base_vars = [var for var in required_vars if not os.getenv(var)]
 
-    if faulty_vars:
-        logger.critical(f"Required environment variables not found: {faulty_vars}")
+    if missing_base_vars:
+        logger.critical(f"Required environment variables not found: {missing_base_vars}")
         sys.exit(1)
-    else:
-        logger.info("All required environment variables found")
 
-# Check if the template file exists.
+    # Add production-specific requirements if in production mode.
+    if os.getenv("DEPLOYMENT_ENV") == "production":
+        production_vars = ["CHROMA_API_KEY", "CHROMA_TENANT", "CHROMA_DATABASE"]
+        missing_production_vars = [var for var in production_vars if not os.getenv(var)]
+
+        if missing_production_vars:
+            logger.critical(f"Production environment requires: {missing_production_vars}")
+            sys.exit(1)
+
+    logger.info("All required environment variables found")
+
+# Check if the template file exists and meets basic criteria.
 def check_template_file():
     try:
         with open("templates/chat.html", "r") as f:
-            f.read()  # verify if readable
+            content = f.read()
+            if not content or not content.strip():
+                logger.critical("Template file is empty!")
+                sys.exit(1)
         logger.info("Template file found and readable")
     except FileNotFoundError:
         logger.critical("Template file missing!")
@@ -87,7 +97,7 @@ def check_template_file():
 # Check if Redis is working for session storage.
 def check_redis_health():
     try:
-        # Test basic read/write operations
+        # Test basic read/write operations.
         test_key = "health_check"
         SESSION_REDIS.set(test_key, "ok", ex=10)  # Write: store "ok", expire in 10 seconds
         result = SESSION_REDIS.get(test_key)
@@ -117,30 +127,41 @@ def initialize_rag_service():
 
 # Load only static prompts (excluding knowledge base for RAG).
 def prompt_system_v1_1():
-    try:
-        prompt_files = ["sys_prompt.txt", "behaviour_guidelines.txt"]  # Exclude knowledge_base_techmarkt.txt
-        content_prompts = {}
-        for file_name in prompt_files:
-            with open(file_name, "r") as file:
+    prompt_files = ["sys_prompt.txt", "behaviour_guidelines.txt"]  # Exclude knowledge_base_techmarkt.txt
+    content_prompts = {}
+
+    for file_name in prompt_files:
+        try:
+            with open(f"prompts/{file_name}", "r", encoding="utf-8") as file:
                 content = file.read().strip()
-                content_prompts[file_name] = content
-            
+
                 # Validate if file is empty or only whitespace.
                 if not content:
                     logger.critical(f"Empty or whitespace-only file: {file_name}")
                     sys.exit(1)
-                
-        # Validate all expected files were loaded.
-        if len(content_prompts) < 2:
-            logger.critical(f"Expected 2 prompt files, got {len(content_prompts)}")
+
+                content_prompts[file_name] = content
+
+        except FileNotFoundError:
+            logger.critical(f"Prompt file not found: {file_name}")
             sys.exit(1)
-             
-        logger.info(f"All system prompts (v1.1) loaded successfully.")
-        return content_prompts
-    
-    except Exception as e:
-        logger.critical(f"Error loading system prompts (v1.1): {e}")
+        except PermissionError:
+            logger.critical(f"Cannot read prompt file due to permissions: {file_name}")
+            sys.exit(1)
+        except UnicodeDecodeError:
+            logger.critical(f"Encoding error in prompt file: {file_name}")
+            sys.exit(1)
+        except Exception as e:
+            logger.critical(f"Unexpected error loading {file_name}: {e}")
+            sys.exit(1)
+
+    # Validate all expected files were loaded.
+    if len(content_prompts) < 2:
+        logger.critical(f"Expected 2 prompt files, got {len(content_prompts)}")
         sys.exit(1)
+
+    logger.info(f"All system prompts (v1.1) loaded successfully.")
+    return content_prompts
 
 # === FLASK ROUTES ===
 
@@ -166,21 +187,13 @@ def chat():
     # Initialize new conversation using ConversationService.
     if "messages" not in session:
         prompts = prompt_system_v1_1()  # Load static prompts
-        basic_metrics.track_context_tokens(prompts) # Calculate and store context tokens
         session["messages"] = conversation_service.initialize_conversation(prompts)
 
     # Build conversation with user message and relevant context: sys prompts + rag-retrieved context.
     messages = conversation_service.build_conversation_with_context(session["messages"], user_message)
 
     # Get AI response using service layer - exceptions bubble up to centralized handlers
-    ai_response, metrics_data = conversation_service.get_ai_response(messages)
-
-    # Track metrics using data from service
-    basic_metrics.track_metrics(
-        metrics_data["response_time"],
-        metrics_data["tokens_used"],
-        success=metrics_data["success"]
-    )
+    ai_response = conversation_service.get_ai_response(messages)
 
     # Add AI response to conversation using service.
     updated_messages = conversation_service.add_assistant_response(messages, ai_response)
@@ -193,14 +206,20 @@ def chat():
 # Endpoint to view current chatbot metrics.
 @app.route('/metrics')
 def get_metrics():
-    return jsonify(basic_metrics.get_metrics_summary())
+
+    # Get metrics data and format as pretty JSON.
+    metrics_data = basic_metrics.get_metrics_summary_v1_1()
+    pretty_json = json.dumps(metrics_data, indent=2, ensure_ascii=False)
+
+    # Return as formatted JSON response.
+    return Response(pretty_json, mimetype='application/json')
 
 # === CENTRALIZED ERROR HANDLERS ===
 
 @app.errorhandler(500)
 def handle_internal_error(e):
     logger.error(f"Internal server error: {e}", exc_info=True) 
-    basic_metrics.track_metrics(0, 0, success=False) 
+    basic_metrics.track_metrics_v1_1(0, 0, 0, success=False) 
     return jsonify({"error": "Service temporarily unavailable. Try again later."}), 500
 
 @app.errorhandler(400)

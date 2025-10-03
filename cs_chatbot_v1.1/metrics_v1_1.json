@@ -1,0 +1,11 @@
+{
+  "total_requests_v1_1": 0,
+  "successful_requests_v1_1": 0,
+  "total_response_time_v1_1": 0,
+  "total_conversation_tokens_v1_1": 0,
+  "total_context_tokens_v1_1": 0,
+  "empty_retrieval_count_v1_1": 0,
+  "empty_retrieval_queries_v1_1": [],
+  "last_updated": "2025-10-03T00:00:00.000000",
+  "total_cost_v1_1": 0.0
+}

@@ -9,4 +9,5 @@ poetry.lock
 pyproject.toml
 *.log
 chroma_db/
+CLAUDE.md
 .vscode/
