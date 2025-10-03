@@ -10,7 +10,6 @@
 - [Technical Implementation](#technical-implementation)
 - [Setup & Deployment](#setup--deployment)
 - [Performance Metrics](#performance-metrics)
-- [Demo](#demo)
 
 ## Architecture Overview
 
@@ -121,14 +120,9 @@ Total Requests:           17 successful
 ### Metrics Collection
 Real-time performance tracking available at `/metrics` endpoint.
 
-## Demo
-
-** Live Application:** [TechMarkt CS Chatbot](https://ai-chatbot-us1u.onrender.com)  
-** Metrics Dashboard:** [Performance Analytics](https://ai-chatbot-us1u.onrender.com/metrics)
-
 ---
 
-**Next:** Explore [v1.1 RAG optimization](../cs_chatbot_v1.1-rag/) for token efficiency improvements.
+**Next:** Explore [v1.1 RAG optimization](../cs_chatbot_v1.1/) for token efficiency improvements.
 
 ### v1.0 → v1.1 Improvements:
 1. **Token optimization** (RAG vs static knowledge)

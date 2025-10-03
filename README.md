@@ -50,18 +50,22 @@ This solution enables TechMarkt to offer the consultation experience that custom
 | Version | AI Framework | Database | Key Learning |
 |---------|-------------|----------|--------------|
 | v1.0 | OpenAI API | Redis | Production web apps with AI |
-| v1.1 | OpenAI API + LangChain | Redis + Chroma Cloud | Vector databases & dynamic retrieval |
+| v1.1 | OpenAI API + LangChain | Redis + ChromaDB/Chroma Cloud | RAG, vector databases & semantic retrieval |
 
 ## Project Structure
 ```
 AI-CS-Chatbot/
 ├── LICENSE
 ├── README.md                    # Project overview and context
-├── cs_chatbot_v1.0/            # Production chatbot
+├── cs_chatbot_v1.0/            # Static knowledge base implementation
 │   ├── app.py
 │   ├── requirements.txt
 │   └── README.md               # v1.0 overview and setup instructions
-└── cs_chatbot_v1.1-rag/        # RAG optimization (planned)
+└── cs_chatbot_v1.1/            # RAG-optimized implementation
+    ├── app.py
+    ├── services/
+    │   ├── conversation_service.py
+    │   └── rag_service.py
     └── README.md               # v1.1 overview and setup instructions
 ```
 
@@ -78,12 +82,12 @@ AI-CS-Chatbot/
 
 Each version is self-contained with its own setup instructions:
 
-1. **[Start with v1.0](./cs_chatbot_v1.0/)** - Complete production chatbot
-2. **[Explore v1.1](./cs_chatbot_v1.1-rag/)** - (Coming soon) RAG optimization
+1. **[v1.0](./cs_chatbot_v1.0/)** - Complete production chatbot
+2. **[v1.1](./cs_chatbot_v1.1/)** - RAG-optimized implementation with 35.4% context reduction
 
-**Live Demos:**
-- [🚀 v1.0 Chatbot](https://ai-chatbot-us1u.onrender.com)
-- [📊 Metrics Dashboard v1.0](https://ai-chatbot-us1u.onrender.com/metrics)
+**Live Demo:**
+- [🚀 TechMarkt CS Chatbot v1.1](https://ai-chatbot-us1u.onrender.com)
+- [📊 Performance Analytics](https://ai-chatbot-us1u.onrender.com/metrics)
 
 ## License
 
