@@ -11,3 +11,4 @@ pyproject.toml
 chroma_db/
 CLAUDE.md
 .vscode/
+.DS_Store
