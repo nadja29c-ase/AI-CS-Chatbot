@@ -23,7 +23,7 @@ v1.1 implements a RAG (Retrieval-Augmented Generation) system for optimized toke
 - **Three-Layer Service Architecture**: Separation of concerns (Flask for HTTP/validation, Conversation Service for orchestration and OpenAI API calls, RAG Service for knowledge retrieval)
 - **Session Management**: Redis for persistent multi-turn conversation history (preserved from v1.0)
 - **Vector Storage**: Environment-aware deployment (local ChromaDB persistence in development, Chroma Cloud in production)
-- **Metrics Storage**: JSON-based persistence solves Redis free plan limitations from v1.0
+- **Metrics Storage**: JSON-based approach attempted for v1.0 Redis limitations with data storage persistance (see [Production Deployment Learnings](#production-deployment-learnings)).
 
 ### Architecture Diagram
 ```
@@ -82,16 +82,10 @@ v1.1 implements a RAG (Retrieval-Augmented Generation) system for optimized toke
 - **Multi-turn Conversations** with Redis session management
 
 ### Production Features
-- **Persistent Metrics Tracking** with JSON file storage (no Redis dependency)
+- **Metrics Tracking** with JSON file storage (no Redis dependency)
+  - **Production Solution:** Migrate to a database (PostgreSQL, MongoDB) or use paid persistent disk storage for metrics that survive redeployments (see [Production Deployment Learnings](#production-deployment-learnings))
 - **Robust Error Handling** with explicit exception types
 - **Chroma Cloud Integration** for scalable vector storage
-
-### Metrics Dashboard
-Comprehensive performance monitoring with v1.0 comparison:
-- Token usage and cost analysis (context size tracking)
-- Response time monitoring
-- Success rate tracking
-- Empty retrieval analysis for knowledge gap identification
 
 ### Core Technologies
 ```
@@ -193,17 +187,17 @@ Empty Retrievals:         3 (knowledge gaps identified)
 | **Response Time** | 2.35s | 3.06s | +30.2% ⚠️ |
 | **Cost/Conversation** | $0.00144 | $0.001361 | **-5.5%** ✅ |
 | **Token Usage** | 3,840 tokens | 3,629.4 tokens | **-5.5%** ✅ |
-| **Metrics Persistence** | No (Redis) | Yes (JSON) | **✅** |
+| **Metrics Persistence** | No (Redis free) | No (JSON ephemeral) | ⚠️ Requires DB |
 
-**Analysis**: v1.1 achieved **35.4% context reduction** (878.1 tokens saved), enabling more conversation history in the same context window. Response time increased 30.2% due to RAG retrieval and vector search overhead, but the 5.5% cost reduction and persistent metrics tracking make this trade-off acceptable for the learning objectives.
+**Analysis**: v1.1 achieved **35.4% context reduction** (878.1 tokens saved), enabling more conversation history in the same context window. Response time increased 30.2% due to RAG retrieval and vector search overhead, but the 5.5% cost reduction makes this trade-off acceptable for the learning objectives. Note: Metrics persistence requires database migration for production deployments.
 
 ### Empty Retrieval Insights
 Knowledge gaps identified in production:
 1. "I am a software developer and i need a complete homeoffice setup" - Complex multi-product queries
 2. "kann ich es in raten abbezahlen?" - Payment plan information
-3. "Hey, i need a present for my dad.. he is into sports" - Out-of-domain requests
+3. "Hey, i need a present for my dad.. he is into sports" - Complex product query
 
-## Development Insights
+## Development Notes
 
 ### AI-Assisted Development
 This project was built using **Claude Code** for:
@@ -215,8 +209,12 @@ This project was built using **Claude Code** for:
 ### Chunking and Retrieval:
 Analysis revealed semantic gaps in retrieval (cosine distances 1.0-1.5), which could be improved by extending the knowledge base and product metadata. Current implementation achieves acceptable performance with controlled hallucinations and meets the primary goal of 35% context reduction.
 
-## Demo
+### Production Deployment Learnings
+**Metrics Persistence:**
+ - ⚠️ **Limitation:** JSON metrics reset on each redeployment due to Render's ephemeral filesystem. Initially designed as a simple persistence solution for v1.0's Redis free tier limitations, but production deployment revealed that cloud platforms require true persistence solutions.
+- Key takeaway: Cloud platforms require database or managed storage for persistence.
 
+## Demo
 **Live Application:** [TechMarkt CS Chatbot v1.1](https://ai-chatbot-us1u.onrender.com)
 **Metrics Dashboard:** [Performance Analytics v1.1](https://ai-chatbot-us1u.onrender.com/metrics)
 
