@@ -192,7 +192,7 @@ def get_metrics_summary_v1_1():
             avg_cost = data["total_cost_v1_1"] / successful_requests
             success_rate = (successful_requests / total_requests) * 100
         else:
-            avg_response_time = avg_conversation_tokens = avg_context = avg_cost = 0
+            avg_response_time = avg_conversation_tokens = avg_context = avg_cost = success_rate = 0
 
         return {
             "total_requests_v1_1": total_requests,
